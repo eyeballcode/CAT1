@@ -53,6 +53,7 @@ getCAT1Btn.addEventListener('click', async () => {
   })
 
   let cat1Status = await response.json()
+
   if (cat1Status.status === 'cat1') {
     statusField.value = `${getHHMM(new Date(cat1Status.start))}-${getHHMM(new Date(cat1Status.end))}`
   } else {

@@ -85,7 +85,7 @@ async function getCAT1Sectors() {
   let telegramSectors = telegramSectorData.map(sector => sector.sector)
   let missingForecastSectors = forecastSectorData.filter(sector => !telegramSectors.includes(sector.sector))
 
-  let combinedSectors = telegramSectors.concat(missingForecastSectors)
+  let combinedSectors = telegramSectorData.concat(missingForecastSectors)
 
   let sorted = combinedSectors.sort((a, b) => sectorOrder.indexOf(a.sector) - sectorOrder.indexOf(b.sector))
   return sorted

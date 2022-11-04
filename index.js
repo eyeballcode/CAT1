@@ -5,7 +5,7 @@ const path = require('path')
 const booleanPointInPolygon = require('@turf/boolean-point-in-polygon').default
 const helpers = require('@turf/helpers')
 const cat1Sectors = require('./res/cat1-sectors')
-const { getCAT1Status } = require('./get-cat1-sectors')
+const { getCAT1Status, getCAT1Sectors } = require('./get-cat1-sectors')
 
 const config = require('./config')
 
@@ -35,6 +35,10 @@ app.post('/get-cat1-status', async (req, res) => {
   let { sector } = req.body
 
   res.json(await getCAT1Status(sector))
+})
+
+app.get('/get-cat1-sectors', async (req, res) => {
+  res.json(await getCAT1Sectors())
 })
 
 let server = http.createServer(app)
