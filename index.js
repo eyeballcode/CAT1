@@ -7,6 +7,8 @@ const helpers = require('@turf/helpers')
 const cat1Sectors = require('./res/cat1-sectors')
 const { getCAT1Status } = require('./get-cat1-sectors')
 
+const config = require('./config')
+
 let app = express()
 
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -37,4 +39,4 @@ app.post('/get-cat1-status', async (req, res) => {
 
 let server = http.createServer(app)
 
-server.listen(8010)
+server.listen(config.port)
