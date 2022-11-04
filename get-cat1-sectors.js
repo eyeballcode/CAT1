@@ -11,7 +11,7 @@ function HHMMToMoment(time) {
   return moment
 }
 
-async function getCAT1Sectors() {
+async function getCAT1SectorsCore() {
   let telegramData = JSON.parse(await request('https://t.me/s/ArmyCAT1', {
     method: 'POST',
     headers: {
@@ -41,6 +41,16 @@ async function getCAT1Sectors() {
   sorted.forEach(sector => sector.sector = sector.sector.replace(/^0/, ''))
 
   return sorted
+}
+
+let cachedData, cacheTime
+
+async function getCAT1Sectors() {
+  if (cachedData && (new Date() - cacheTime) < 1000 * 60 * 2) return cachedData
+
+  cachedData = await getCAT1SectorsCore()
+  cacheTime = new Date()
+  return cachedData
 }
 
 async function getCAT1Status(sector) {
