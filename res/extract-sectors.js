@@ -1,5 +1,11 @@
 const fs = require('fs')
 const svy21 = require('./svy21')
+const allForecastAreas = require('./nowcast-sectors')
+
+const booleanPointInPolygon = require('@turf/boolean-point-in-polygon').default
+const centerOfMass = require('@turf/center-of-mass').default
+const nearestPoint = require('@turf/nearest-point').default
+const helpers = require('@turf/helpers')
 
 const svgData = fs.readFileSync('cat1-sectors-small.svg').toString()
 
@@ -63,5 +69,18 @@ let geoJsonData = {
     }
   }))
 }
+
+
+geoJsonData.features.forEach(sector => {
+  let forecastAreas = allForecastAreas.features.filter(area => booleanPointInPolygon(area, sector))
+  if (!forecastAreas.length) {
+    let centre = centerOfMass(sector)
+    closestArea = nearestPoint(centre, allForecastAreas)
+
+    forecastAreas = [closestArea]
+  }
+
+  sector.properties.forecastAreas = forecastAreas.map(area => area.properties.name)
+})
 
 fs.writeFileSync('cat1-sectors.json', JSON.stringify(geoJsonData))

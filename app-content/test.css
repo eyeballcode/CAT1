@@ -1,0 +1,25 @@
+@font-face {
+  font-family: 'Merriweather';
+  font-weight: normal;
+  font-display: fallback;
+  src: url(merriweather.ttf) format('truetype');
+}
+
+h1 {
+  background: url(/pixels.png);
+  background-size: 12em;
+
+  image-rendering: -moz-crisp-edges;          /* Firefox        */
+  image-rendering: -o-crisp-edges;            /* Opera          */
+  image-rendering: -webkit-optimize-contrast; /* Safari         */
+  image-rendering: optimize-contrast;         /* CSS3 Proposed  */
+  -ms-interpolation-mode: nearest-neighbor;   /* IE8+           */
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+
+  font-family: 'Merriweather';
+  font-weight: bold;
+  font-size: 400px;
+}
