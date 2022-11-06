@@ -3,7 +3,7 @@ const svy21 = require('./svy21')
 const allForecastAreas = require('./nowcast-sectors')
 
 const booleanPointInPolygon = require('@turf/boolean-point-in-polygon').default
-const centerOfMass = require('@turf/center-of-mass').default
+const centreOfMass = require('@turf/center-of-mass').default
 const nearestPoint = require('@turf/nearest-point').default
 const helpers = require('@turf/helpers')
 
@@ -74,7 +74,7 @@ let geoJsonData = {
 geoJsonData.features.forEach(sector => {
   let forecastAreas = allForecastAreas.features.filter(area => booleanPointInPolygon(area, sector))
   if (!forecastAreas.length) {
-    let centre = centerOfMass(sector)
+    let centre = centreOfMass(sector)
     closestArea = nearestPoint(centre, allForecastAreas)
 
     forecastAreas = [closestArea]

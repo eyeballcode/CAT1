@@ -59,5 +59,4 @@ getCAT1Btn.addEventListener('click', async () => {
   } else {
     statusField.value = 'Clear'
   }
-  console.log(cat1Status);
 })

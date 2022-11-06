@@ -5,6 +5,12 @@ moment.tz.setDefault('Asia/Singapore')
 
 module.exports = {
   now: () => moment.tz('Asia/Singapore'),
+  parseTime: (time, format) => {
+    if (format)
+      return moment.tz(time, format, 'Asia/Singapore')
+    else
+      return moment.tz(time, 'Asia/Singapore')
+  },
   request: async (url, options={}) => {
     let start = +new Date()
 
