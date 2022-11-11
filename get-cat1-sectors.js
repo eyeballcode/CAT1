@@ -171,13 +171,13 @@ async function getCAT1Sectors() {
 
   await Promise.all([
     (async function() {
-      telegramSectorData = await getCAT1SectorsFromTelegram()
+      try { telegramSectorData = await getCAT1SectorsFromTelegram() } catch (e) {}
     })(),
     (async function() {
-      forecastSectorData = await getCAT1SectorsFromForecast()
+      try { forecastSectorData = await getCAT1SectorsFromForecast() } catch (e) {}
     })(),
     (async function() {
-      lightningSectorData = await getCAT1SectorsFromLightning()
+      try { lightningSectorData = await getCAT1SectorsFromLightning() } catch (e) {}
     })()
   ])
 
@@ -201,5 +201,3 @@ module.exports = {
   getCAT1Sectors,
   getCAT1Status
 }
-
-getCAT1Sectors().then(r=>console.log(r))
