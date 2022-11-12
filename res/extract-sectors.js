@@ -83,4 +83,4 @@ geoJsonData.features.forEach(sector => {
   sector.properties.forecastAreas = forecastAreas.map(area => area.properties.name)
 })
 
-fs.writeFileSync('cat1-sectors.json', JSON.stringify(geoJsonData))
+fs.writeFileSync('../cat1-sectors.json', JSON.stringify(geoJsonData))

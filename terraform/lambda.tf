@@ -1,10 +1,16 @@
 resource "aws_lambda_function" "cat" {
-  filename      = "cat.zip"
-  function_name = "cat"
+  filename      = local.zip_file
+  function_name = "handler"
   role          = aws_iam_role.iam_for_lambda.arn
-  handler       = "../index.cat"
+  handler       = "test-lambda.handler"
 
-  source_code_hash = filebase64sha256("cat.zip")
+  source_code_hash = filebase64sha256(local.zip_file)
 
   runtime = "nodejs16.x"
+  
+  environment {
+    variables = {
+      NODE_ENV = "production"
+    }
+  }
 }

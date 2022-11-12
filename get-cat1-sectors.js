@@ -1,6 +1,6 @@
 const { request, now, parseTime } = require('./utils')
 const cheerio = require('cheerio')
-const allCAT1Sectors = require('./res/cat1-sectors')
+const allCAT1Sectors = require('./cat1-sectors')
 const centreOfMass = require('@turf/center-of-mass').default
 const nearestPointOnLine = require('@turf/nearest-point-on-line').default
 const booleanPointInPolygon = require('@turf/boolean-point-in-polygon').default
